@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:new_app/src/custom_icon_button.dart';
 import 'package:new_app/src/date_container.dart';
 import 'package:new_app/utils/app_colors.dart';
 import 'package:new_app/utils/utils.dart';
@@ -26,12 +28,13 @@ class Home extends StatelessWidget {
         'date': date.day,
         'isDot': index % 2 != 0,
         'color': isToday ? AppColors.bottomBarColor : AppColors.almostWhite,
-        'textColor': isToday ? AppColors.almostWhite : AppColors.grey,
+        'dateColor': isToday ? AppColors.almostWhite : AppColors.black,
+        'dayColor': isToday ? AppColors.almostWhite : AppColors.grey,
       };
     });
 
     final String mon = DateFormat.MMM().format(DateTime.now());
-    List RandomImages = [
+    List randomImages = [
       AssetImage('assets/man.jpg'),
       AssetImage('assets/woman1.jpg'),
       AssetImage('assets/user.webp'),
@@ -102,16 +105,16 @@ class Home extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: 260,
+                height: 200,
                 width: 420,
                 child: Stack(
                   children: [
                     Center(
                       child: Container(
-                        height: 220,
+                        height: 180,
                         width: 380,
                         padding: EdgeInsets.fromLTRB(20, 12, 20, 14),
-                        margin: EdgeInsets.fromLTRB(20, 20, 20, 15),
+                        margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
                         decoration: BoxDecoration(
                           color: AppColors.purple,
                           borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -126,8 +129,8 @@ class Home extends StatelessWidget {
                                   style: GoogleFonts.poppins(
                                     textStyle: TextStyle(
                                       color: AppColors.black,
-                                      fontSize: 36,
-                                      fontWeight: FontWeight.w800,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                 ),
@@ -136,30 +139,30 @@ class Home extends StatelessWidget {
                                   style: GoogleFonts.poppins(
                                     textStyle: TextStyle(
                                       color: AppColors.black,
-                                      fontSize: 16,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
-                                12.verticalSpacer,
+                                6.verticalSpacer,
                                 Row(
                                   children: [
                                     Row(
                                       children: [
                                         for (
                                           int i = 0;
-                                          i < RandomImages.length;
+                                          i < randomImages.length;
                                           i++
                                         )
                                           Align(
                                             widthFactor: 0.70,
                                             child: CircleAvatar(
                                               backgroundColor: AppColors.purple,
-                                              radius: 27,
+                                              radius: 22,
                                               child: CircleAvatar(
-                                                radius: 24,
+                                                radius: 20,
                                                 backgroundImage:
-                                                    RandomImages[i],
+                                                    randomImages[i],
                                               ),
                                             ),
                                           ),
@@ -167,9 +170,9 @@ class Home extends StatelessWidget {
                                     ),
                                     CircleAvatar(
                                       backgroundColor: AppColors.purple,
-                                      radius: 26,
+                                      radius: 22,
                                       child: CircleAvatar(
-                                        radius: 24,
+                                        radius: 20,
                                         backgroundColor: AppColors.deepPurple,
                                         child: Text(
                                           '+4',
@@ -193,7 +196,7 @@ class Home extends StatelessWidget {
                     ),
                     Positioned(
                       top: -30,
-                      right: 50,
+                      right: 60,
                       child: Container(
                         height: 200,
                         width: 120,
@@ -205,8 +208,8 @@ class Home extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      top: 52,
-                      right: 30,
+                      top: 30,
+                      right: 34,
                       child: Container(
                         height: 200,
                         width: 120,
@@ -233,9 +236,271 @@ class Home extends StatelessWidget {
                           date: item['date'],
                           isDot: item['isDot'],
                           color: item['color'],
-                          textColor: item['textColor'],
+                          dateColor: item['dateColor'],
+                          dayColor: item['dayColor'],
                         );
                       }).toList(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Your Plan',
+                      style: GoogleFonts.poppins(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 290,
+                width: 420,
+                child: Row(
+                  children: [
+                    Container(
+                      height: 270,
+                      width: 200,
+                      margin: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 15,
+                        horizontal: 20,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.homeYellow,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(77, 255, 255, 255),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(
+                              'Medium',
+                              style: GoogleFonts.montserrat(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black,
+                              ),
+                            ),
+                          ),
+                          12.verticalSpacer,
+                          Text(
+                            'Yoga Group',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 24,
+                              color: AppColors.black,
+                            ),
+                          ),
+                          5.verticalSpacer,
+                          Text(
+                            '25 Nov.',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              color: AppColors.black,
+                            ),
+                          ),
+                          Text(
+                            '14:00 - 15:00',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              color: AppColors.black,
+                            ),
+                          ),
+                          Text(
+                            'A5 Room',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              color: AppColors.black,
+                            ),
+                          ),
+                          Spacer(), // Pushes the row to the bottom
+
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 16,
+                                backgroundImage: AssetImage('assets/user.webp'),
+                              ),
+                              SizedBox(width: 8),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Trainer',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Tiffany Way',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 200,
+                          width: 180,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                top: 0,
+                                right: 0,
+                                child: Container(
+                                  height: 180,
+                                  width: 160,
+                                  margin: EdgeInsets.fromLTRB(0, 10, 20, 0),
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 15,
+                                    horizontal: 20,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.homeBlue,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Color.fromARGB(
+                                            77,
+                                            255,
+                                            255,
+                                            255,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            20,
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'Medium',
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color:
+                                                Colors
+                                                    .black, // or AppColors.black
+                                          ),
+                                        ),
+                                      ),
+                                      12.verticalSpacer,
+                                      Text(
+                                        'Balance',
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              Colors
+                                                  .black, // or AppColors.black
+                                        ),
+                                      ),
+                                      5.verticalSpacer,
+                                      Text(
+                                        '25 Nov.',
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 16,
+                                          color: AppColors.black,
+                                        ),
+                                      ),
+                                      Text(
+                                        '14:00-15:00',
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 16,
+                                          color: AppColors.black,
+                                        ),
+                                      ),
+                                      Text(
+                                        'A2 Room',
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 16,
+                                          color: AppColors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 15,
+                                right: 10,
+                                child: Container(
+                                  height: 80,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.rectangle,
+                                  ),
+
+                                  child: SvgPicture.asset(
+                                    'assets/cube2.svg',
+                                    height: 20,
+                                    width: 20,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Container(
+                          height: 80,
+                          width: 160,
+                          margin: EdgeInsets.fromLTRB(0, 0, 20, 10),
+                          decoration: BoxDecoration(
+                            color: AppColors.homePink,
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              CustomIconButton(
+                                icon: FontAwesomeIcons.instagram,
+                              ),
+                              CustomIconButton(icon: FontAwesomeIcons.youtube),
+                              CustomIconButton(icon: FontAwesomeIcons.twitter),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -255,13 +520,10 @@ class Home extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Icon(Icons.home, color: AppColors.white, size: 30),
-              Icon(Icons.app_registration, color: AppColors.white, size: 30),
-              Icon(
-                Icons.stacked_bar_chart_outlined,
-                color: AppColors.white,
-                size: 30,
-              ),
-              Icon(Icons.person_4_outlined, color: AppColors.white, size: 30),
+              Icon(Icons.grid_view, color: AppColors.white, size: 30),
+              Icon(Icons.analytics, color: AppColors.white, size: 30),
+
+              Icon(Icons.person, color: AppColors.white, size: 30),
             ],
           ),
         ),

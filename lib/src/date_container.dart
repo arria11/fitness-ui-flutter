@@ -4,14 +4,16 @@ import 'package:new_app/utils/app_colors.dart';
 
 class DateContainer extends StatelessWidget {
   final Color color;
-  final Color textColor;
+  final Color dayColor;
+  final Color dateColor;
   final String day;
   final int date;
-  bool isDot;
-  DateContainer({
+  final bool isDot;
+  const DateContainer({
     super.key,
     required this.color,
-    required this.textColor,
+    required this.dayColor,
+    required this.dateColor,
     required this.day,
     required this.date,
     required this.isDot,
@@ -31,19 +33,19 @@ class DateContainer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          isDot ? Text('●', style: TextStyle(color: textColor)) : Text(''),
+          isDot ? Text('●', style: TextStyle(color: dateColor)) : Text(''),
           Text(
             day,
             style: GoogleFonts.montserrat(
-              textStyle: TextStyle(color: textColor, fontSize: 18),
+              textStyle: TextStyle(color: dayColor, fontSize: 18),
             ),
           ),
           Text(
             date.toString(),
             style: GoogleFonts.montserrat(
               textStyle: TextStyle(
-                color: textColor,
-                fontWeight: FontWeight.w600,
+                color: dateColor,
+                fontWeight: FontWeight.w500,
                 fontSize: 18,
               ),
             ),
